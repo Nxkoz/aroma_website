@@ -1,0 +1,32 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<h2>Ваш кошик</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Кількість</th>
+            <th>Ціна</th>
+            <th>Разом</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }} грн</td>
+            <td>{{ item.total_price }} грн</td>
+            <td>
+                <a href="{% url 'cart:cart_remove' item.product.id %}" class="btn btn-sm btn-danger">Видалити</a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3" class="text-end"><strong>Усього:</strong></td>
+            <td colspan="2">{{ cart.get_total_price }} грн</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+
+<header class="text-white d-flex flex-column justify-content-center align-items-center"
+        style="background-image: url('https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-67e4-61f7-be3a-eefbbdf98614/raw?se=2025-04-30T12%3A23%3A02Z&sp=r&sv=2024-08-04&sr=b&scid=129a890f-e83e-5cbd-b56e-1c660eaa038a&skoid=06e05d6f-bdd9-4a88-a7ec-2c0a779a08ca&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-30T04%3A45%3A07Z&ske=2025-05-01T04%3A45%3A07Z&sks=b&skv=2024-08-04&sig=c8R2ruvayuIXh8FwZN1AHbYfIukpW4c9whaEoV7VUh0%3D');
+               background-size: cover;
+               background-position: center;
+               background-repeat: no-repeat;
+               height: 100vh;
+               margin-top: 70px;
+               width: 100%;">
+    <h1 class="display-1 fw-bold text-shadow text-center">30 Million Candle</h1>
+    <p class="lead text-center">Свічки, що створюють атмосферу</p>
+    <a href="{% url 'shop:product_list' %}" class="btn btn-lg mt-4" style="background-color: #f4a261; color: #fff;">Переглянути каталог</a>
+</header>
+
+{% endblock %}

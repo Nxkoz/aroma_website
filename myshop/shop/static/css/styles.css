@@ -1,0 +1,171 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Навигация */
+.navbar {
+    background-color: #333;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #f4a261;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f4a261;
+}
+
+.navbar-toggler-icon {
+    background-color: #f4a261;
+}
+
+/* Хедер */
+header {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-67e4-61f7-be3a-eefbbdf98614/raw?se=2025-04-30T12%3A23%3A02Z&sp=r&sv=2024-08-04&sr=b&scid=129a890f-e83e-5cbd-b56e-1c660eaa038a&skoid=06e05d6f-bdd9-4a88-a7ec-2c0a779a08ca&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-30T04%3A45%3A07Z&ske=2025-05-01T04%3A45%3A07Z&sks=b&skv=2024-08-04&sig=c8R2ruvayuIXh8FwZN1AHbYfIukpW4c9whaEoV7VUh0%3D');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 70px;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    color: transparent;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5), 0 0 25px gold, 0 0 5px darkorange;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to right, #f4a261, #d4af37);
+}
+
+header .lead {
+    font-size: 1.5rem;
+    color: #f4a261;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+header .btn {
+    background-color: #f4a261;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header .btn:hover {
+    background-color: #d4af37;
+    color: #1a1a1a;
+}
+
+/* Основной блок */
+main {
+    padding: 50px 0;
+    width: 100%;
+}
+
+/* Карточки товаров */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-card .product-details {
+    padding: 15px;
+}
+
+.product-card .product-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-card .product-price {
+    font-size: 1.2rem;
+    color: #e67e22;
+    margin-bottom: 10px;
+}
+
+.product-card .product-scent {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.product-card .btn {
+    background-color: #e67e22;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.product-card .btn:hover {
+    background-color: #d35400;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr;
+    }
+}
