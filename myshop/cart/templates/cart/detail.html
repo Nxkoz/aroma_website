@@ -1,32 +1,43 @@
 {% extends "shop/base.html" %}
+
 {% block content %}
-<h2>Ваш кошик</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Товар</th>
-            <th>Кількість</th>
-            <th>Ціна</th>
-            <th>Разом</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        <tr>
-            <td>{{ item.product.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.price }} грн</td>
-            <td>{{ item.total_price }} грн</td>
-            <td>
-                <a href="{% url 'cart:cart_remove' item.product.id %}" class="btn btn-sm btn-danger">Видалити</a>
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td colspan="3" class="text-end"><strong>Усього:</strong></td>
-            <td colspan="2">{{ cart.get_total_price }} грн</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container my-5">
+    <h1 class="text-center mb-4" style="color: #d4af37;">Мій кошик 🛒</h1>
+
+    <div class="card bg-dark text-white border border-warning shadow-lg" style="border-radius: 20px;">
+        <div class="card-body">
+            {% if cart %}
+                <ul class="list-group list-group-flush">
+                    {% for item in cart %}
+                        <li class="list-group-item bg-dark text-white border-bottom border-warning">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                <div>
+                                    <strong>{{ item.product.name }}</strong><br>
+                                    Кількість: {{ item.quantity }}<br>
+                                    Ціна за шт.: {{ item.price }} ₴
+                                </div>
+                                <div class="text-end">
+                                    <strong>{{ item.total_price }} ₴</strong>
+                                    <form method="post" action="{% url 'cart:cart_remove' item.product.id %}" class="d-inline ms-3">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">✖ Видалити</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- Золотой блок общей суммы -->
+                <div class="card mt-4 bg-warning text-dark shadow" style="border-radius: 15px;">
+                    <div class="card-body text-end">
+                        <h4 class="mb-0">Загальна сума: <strong>{{ cart.get_total_price }} ₴</strong></h4>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center text-white">Ваш кошик порожній.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
