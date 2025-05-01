@@ -7,6 +7,8 @@ urlpatterns = [
     path('', views.home, name='home'),  # Главная страница
     path('catalog/', views.product_list, name='product_list'),  # Каталог
     path('product/<int:id>/', views.product_detail, name='product_detail'),  # Детали товара
+    path('cart/add/<int:id>/', views.add_to_cart, name='add_to_cart'),
+
 ]
 
 
