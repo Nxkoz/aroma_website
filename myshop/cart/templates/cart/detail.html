@@ -34,6 +34,12 @@
                         <h4 class="mb-0">Загальна сума: <strong>{{ cart.get_total_price }} ₴</strong></h4>
                     </div>
                 </div>
+
+                <!-- Кнопка оформлення замовлення -->
+                <div class="text-end mt-3">
+                    <a href="{% url 'orders:order_create' %}" class="btn btn-success btn-lg">Оформити замовлення</a>
+                </div>
+
             {% else %}
                 <p class="text-center text-white">Ваш кошик порожній.</p>
             {% endif %}
