@@ -1,0 +1,12 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+<div class="container my-5 text-center">
+    <div class="alert alert-success shadow-lg p-4 rounded" role="alert" style="background-color: #d4af37; color: black;">
+        <h1 class="display-4">Дякуємо за замовлення! 🎉</h1>
+        <p class="lead">Ваш номер замовлення: <strong>#{{ order.id }}</strong></p>
+        <p>Ми зв'яжемося з вами найближчим часом.</p>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-dark mt-3">Повернутися до каталогу</a>
+    </div>
+</div>
+{% endblock %}
