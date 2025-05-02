@@ -1,24 +1,25 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView
+from django.shortcuts import redirect, get_object_or_404
 from .models import Product
 from cart.cart import Cart
 from django.contrib import messages
 
+class ProductListView(ListView):
+    model = Product
+    template_name = 'shop/product/product_list.html'
+    context_object_name = 'products'
+    paginate_by = 6
 
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        # Сюда добавим фильтры позже
+        return queryset
 
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'shop/product/product_list.html', {'products': products})
-
-def product_detail(request, id):
-    product = get_object_or_404(Product, id=id)
-    return render(request, 'shop/product/detail.html', {'product': product})
-
-def index(request):
-    return render(request, 'shop/index.html')
-
-
-def home(request):
-    return render(request, 'shop/home.html')
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'shop/product/detail.html'
+    context_object_name = 'product'
+    pk_url_kwarg = 'id'
 
 def add_to_cart(request, id):
     cart = Cart(request)
