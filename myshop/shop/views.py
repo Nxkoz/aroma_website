@@ -1,19 +1,36 @@
 from django.views.generic import ListView, DetailView
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
 from .models import Product
 from cart.cart import Cart
-from django.contrib import messages
+from .forms import ProductFilterForm  # создам этот фильтр позже
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'shop/home.html')
 
 class ProductListView(ListView):
     model = Product
     template_name = 'shop/product/product_list.html'
     context_object_name = 'products'
-    paginate_by = 6
+    paginate_by = 6  # Отображать по 6 товаров на странице
 
     def get_queryset(self):
-        queryset = Product.objects.all()
-        # Сюда добавим фильтры позже
+        queryset = super().get_queryset()
+        name = self.request.GET.get('name')
+        aroma = self.request.GET.get('aroma')
+
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+        if aroma:
+            queryset = queryset.filter(aroma__icontains=aroma)
+
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = ProductFilterForm(self.request.GET)
+        return context
 
 class ProductDetailView(DetailView):
     model = Product
