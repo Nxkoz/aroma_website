@@ -10,11 +10,19 @@ def order_create(request):
         if form.is_valid():
             order = form.save()
             for item in cart:
-                order.items.create(product=item['product'],
-                                   price=item['price'],
-                                   quantity=item['quantity'])
+                order.items.create(
+                    product=item['product'],
+                    price=item['price'],
+                    quantity=item['quantity']
+                )
             cart.clear()
             return render(request, 'orders/order_created.html', {'order': order})
+        else:
+            # если форма невалидна — просто возвращаем её с ошибками:
+            return render(request, 'orders/order_create.html', {
+                'form': form,
+                'error_message': 'Будь ласка, виправте помилки у формі.'
+            })
     else:
         form = OrderCreateForm()
     return render(request, 'orders/order_create.html', {'form': form})
